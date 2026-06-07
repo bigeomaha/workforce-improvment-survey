@@ -126,7 +126,7 @@ export default function AppFeedbackSurvey({ gatingId, surveyType, onComplete }: 
           )}
           {activeIframe === 'desktop' && (
             <iframe
-              src="https://pulsewi.com"
+              src="https://pulsecwi.com"
               title="Pulse Desktop App"
               className="w-full h-[600px]"
               style={{ border: 'none' }}
