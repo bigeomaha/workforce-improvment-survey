@@ -236,7 +236,7 @@ export default function EmployeeSurvey({ gatingId, onComplete }: EmployeeSurveyP
             value={q7}
             onChange={(e) => setQ7(e.target.value)}
             placeholder="Your answer here..."
-            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 placeholder-gray-400"
             rows={4}
           />
         </div>
