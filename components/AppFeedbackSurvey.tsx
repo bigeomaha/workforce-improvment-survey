@@ -78,8 +78,9 @@ export default function AppFeedbackSurvey({ gatingId, surveyType, onComplete }: 
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-8 bg-white rounded-lg shadow-md">
-      <div className="mb-8">
+    <div className="min-h-screen bg-white">
+      {/* Header */}
+      <div className="max-w-7xl mx-auto px-8 py-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-2">Application Feedback Survey</h1>
         <p className="text-gray-600">
           Please review the prototype applications and answer a few quick questions about clarity, usefulness, trust, and usability.
@@ -88,55 +89,60 @@ export default function AppFeedbackSurvey({ gatingId, surveyType, onComplete }: 
         </p>
       </div>
 
-      {/* App Preview Section */}
-      <div className="mb-8 bg-gray-50 rounded-lg p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Application Prototype Preview</h2>
+      {/* App Preview Section - Full Width */}
+      <div className="w-full bg-gray-50 p-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-xl font-semibold text-gray-900 mb-4">Application Prototype Preview</h2>
 
-        <div className="flex gap-4 mb-4">
-          <button
-            onClick={() => setActiveIframe('mobile')}
-            className={`px-4 py-2 rounded-lg font-semibold transition ${
-              activeIframe === 'mobile'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
-          >
-            Mobile App
-          </button>
-          <button
-            onClick={() => setActiveIframe('desktop')}
-            className={`px-4 py-2 rounded-lg font-semibold transition ${
-              activeIframe === 'desktop'
-                ? 'bg-blue-600 text-white'
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
-          >
-            Desktop / Web App
-          </button>
-        </div>
+          <div className="flex gap-4 mb-4">
+            <button
+              onClick={() => setActiveIframe('mobile')}
+              className={`px-4 py-2 rounded-lg font-semibold transition ${
+                activeIframe === 'mobile'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              Mobile App
+            </button>
+            <button
+              onClick={() => setActiveIframe('desktop')}
+              className={`px-4 py-2 rounded-lg font-semibold transition ${
+                activeIframe === 'desktop'
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              }`}
+            >
+              Desktop / Web App
+            </button>
+          </div>
 
-        <div className="bg-white rounded-lg overflow-hidden border-2 border-gray-300">
-          {activeIframe === 'mobile' && (
-            <iframe
-              src="https://pulsecwi-mobile.base44.app/dashboard"
-              title="Pulse Mobile App"
-              className="w-full h-[600px]"
-              style={{ border: 'none' }}
-            />
-          )}
-          {activeIframe === 'desktop' && (
-            <iframe
-              src="https://pulsecwi.com"
-              title="Pulse Desktop App"
-              className="w-full h-[600px]"
-              style={{ border: 'none' }}
-            />
-          )}
+          <div className="bg-white overflow-hidden border-2 border-gray-300 h-[650px]">
+            {activeIframe === 'mobile' && (
+              <iframe
+                src="https://pulsecwi-mobile.base44.app/dashboard"
+                title="Pulse Mobile App"
+                className="w-full h-full"
+                style={{ border: 'none' }}
+              />
+            )}
+            {activeIframe === 'desktop' && (
+              <iframe
+                src="https://pulsecwi.com"
+                title="Pulse Desktop App"
+                className="w-full h-full"
+                style={{ border: 'none' }}
+              />
+            )}
+          </div>
+          <p className="text-sm text-gray-600 mt-4">
+            Take time to explore both applications before answering the questions below.
+          </p>
         </div>
-        <p className="text-sm text-gray-600 mt-4">
-          Take time to explore both applications before answering the questions below.
-        </p>
       </div>
+
+      {/* Form Section */}
+      <div className="max-w-7xl mx-auto px-8 py-8 bg-white">
 
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Q1 */}
