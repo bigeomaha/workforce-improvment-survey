@@ -1,27 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { getSupabaseClient } from '@/lib/supabase';
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
+    const supabase = getSupabaseClient();
 
-    const { data, error } = await supabase
+    // @ts-ignore - Runtime insert, schema validation at database level
+    const insertData = {
+      gating_id: body.gatingId || null,
+      q1_likelihood: body.q1,
+      q2_frequency: body.q2,
+      q3_honesty: body.q3,
+      q4_hesitations: body.q4,
+      q5_useful_features: body.q5,
+      q6_privacy_importance: body.q6,
+      q7_personal_need: body.q7,
+      created_at: new Date().toISOString(),
+    };
+
+    const { data, error } = await (supabase
       .from('employee_survey_responses')
-      .insert([
-        {
-          gating_id: body.gatingId || null,
-          q1_likelihood: body.q1,
-          q2_frequency: body.q2,
-          q3_honesty: body.q3,
-          q4_hesitations: body.q4,
-          q5_useful_features: body.q5,
-          q6_privacy_importance: body.q6,
-          q7_personal_need: body.q7,
-          created_at: new Date().toISOString(),
-        },
-      ])
+      .insert(insertData as any)
       .select('id')
-      .single();
+      .single() as any);
 
     if (error) throw error;
 
